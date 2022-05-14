@@ -1,14 +1,11 @@
 import React from "react";
-import { Pressable, Text } from "react-native";
 import { ButtonProps } from "../../utils/types";
-import { Container } from "./style";
+import { Container, TextBtn } from "./style";
 
-export default function Button({ handleFuncion }: ButtonProps) {
+export default function Button({ handleFuncion, children }: ButtonProps) {
     return (
-        <Container>
-            <Pressable onPress={() => handleFuncion} >
-                <Text>Teste</Text>
-            </Pressable>
+        <Container onPress={handleFuncion} >
+            <TextBtn>{children}</TextBtn>
         </Container>
     );
 }
