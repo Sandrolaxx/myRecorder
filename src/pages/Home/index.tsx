@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import RecordScreen from 'react-native-record-screen';
-import Button from "../../components/Button";
-import Layout from "../../components/Layout";
-import Animation from "../../components/Animation";
 import homeAnimation from "../../assets/recordHome.json";
 import recordingAnimation from "../../assets/recording.json";
+import Animation from "../../components/Animation";
+import Button from "../../components/Button";
+import Layout from "../../components/Layout";
+import Recordings from "../../components/Recordings";
 import { Title } from "./styles";
 
 export default function Home() {
@@ -41,6 +42,7 @@ export default function Home() {
             <Button handleFuncion={record}>
                 {isRecording ? "GRAVANDO" : "INICIAR GRAVAÇÃO"}
             </Button>
+            <Recordings />
         </Layout>
     );
 }
