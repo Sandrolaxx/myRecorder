@@ -5,7 +5,7 @@ import recordingAnimation from "../../assets/recording.json";
 import Animation from "../../components/Animation";
 import Button from "../../components/Button";
 import Layout from "../../components/Layout";
-import Recordings from "../../components/Recordings";
+import RecordingsList from "../../components/RecordingsList";
 import { Title } from "./styles";
 
 export default function Home() {
@@ -42,7 +42,7 @@ export default function Home() {
             <Button handleFuncion={record}>
                 {isRecording ? "GRAVANDO" : "INICIAR GRAVAÇÃO"}
             </Button>
-            <Recordings />
+            <RecordingsList />
         </Layout>
     );
 }
