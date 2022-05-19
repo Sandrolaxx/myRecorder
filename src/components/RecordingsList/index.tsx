@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Text, View } from "react-native";
+import { Text } from "react-native";
 import RNFS, { ReadDirItem } from 'react-native-fs';
+import { isNullOrEmpty } from "../../utils/util";
 import Recording from "../Recording";
-import { Container } from "./styles";
+import { Container, NoFilesText, PlayVideoView } from "./styles";
 
 export default function RecordingsList() {
     const path = "/storage/emulated/0/Android/data/com.myrecorder/files/ReactNativeRecordScreen/";
@@ -18,10 +19,20 @@ export default function RecordingsList() {
     }, []);
 
     return (
-        <Container
-                data={files}
-                renderItem={Recording}
-                keyExtractor={item => item.name}
-        />
+        <Container>
+            {isNullOrEmpty(files) ?
+                files.map(f => (
+                    <Recording file={f} key={f.mtime?.getTime()} />
+                ))
+                :
+                <NoFilesText>
+                    Nenhum gravação encontrada.
+                    {"\n"}
+                    Realize sua primeira apertando
+                    {"\n"}
+                    no botão "INICIAR GRAVAÇÃO"😎
+                </NoFilesText>
+            }
+        </Container>
     );
 }

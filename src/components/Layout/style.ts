@@ -5,10 +5,10 @@ export const Container = styled.SafeAreaView`
     height: 100%;
     justify-content: center;
     align-items: center;
-    background-color: #ffb685;
+    background-color: #FFBB85;
 `
 export const Content = styled.View`
     width: 90%;
-    height: 100%;
+    height: 94%;
     align-items: center;
 `

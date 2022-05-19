@@ -3,4 +3,5 @@ import AnimatedLottieView from "lottie-react-native";
 
 export const LottieFile = styled(AnimatedLottieView)`
     height: 220px;
+    margin-bottom: -20px;
 `;

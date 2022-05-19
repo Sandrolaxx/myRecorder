@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import RecordScreen from 'react-native-record-screen';
-import homeAnimation from "../../assets/recordHome.json";
-import recordingAnimation from "../../assets/recording.json";
+import homeAnimation from "../../assets/lottie/recordHome.json";
+import recordingAnimation from "../../assets/lottie/recording.json";
 import Animation from "../../components/Animation";
 import Button from "../../components/Button";
 import Layout from "../../components/Layout";
