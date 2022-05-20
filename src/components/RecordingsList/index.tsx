@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Text } from "react-native";
 import RNFS, { ReadDirItem } from 'react-native-fs';
 import { isNullOrEmpty } from "../../utils/util";
 import Recording from "../Recording";
-import { Container, NoFilesText, PlayVideoView } from "./styles";
+import { Container, NoFilesText } from "./styles";
 
 export default function RecordingsList() {
     const path = "/storage/emulated/0/Android/data/com.myrecorder/files/ReactNativeRecordScreen/";

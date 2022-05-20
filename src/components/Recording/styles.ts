@@ -19,9 +19,8 @@ export const PlayVideoView = styled.View`
     justify-content: center;
 `
 
-export const TextView = styled.View`
+export const TextView = styled.Pressable`
 `
 
 export const RecText = styled.Text`
-    width: 100%;
 `

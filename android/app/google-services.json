@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "658921417966",
+    "project_id": "myrecorder-97012",
+    "storage_bucket": "myrecorder-97012.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:658921417966:android:53fc0f429d056e9b3597ff",
+        "android_client_info": {
+          "package_name": "com.myrecorder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "658921417966-qkqd62bisjf43el917h72bolrmc9ho3s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCa_fr8s4Y6h_P93ixmWTj-tGp-L3CdLGI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "658921417966-qkqd62bisjf43el917h72bolrmc9ho3s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
