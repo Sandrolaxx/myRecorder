@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import RNFS, { ReadDirItem } from 'react-native-fs';
+import { RecordingsProps } from "../../utils/types";
 import { isNullOrEmpty } from "../../utils/util";
 import Recording from "../Recording";
 import { Container, NoFilesText } from "./styles";
 
-export default function RecordingsList() {
+export default function RecordingsList({ loadRecordings }: RecordingsProps) {
     const path = "/storage/emulated/0/Android/data/com.myrecorder/files/ReactNativeRecordScreen/";
     const [files, setFiles] = useState<ReadDirItem[]>([]);
 
@@ -15,7 +16,7 @@ export default function RecordingsList() {
 
     useEffect(() => {
         getFiles();
-    }, []);
+    }, [loadRecordings]);
 
     return (
         <Container>

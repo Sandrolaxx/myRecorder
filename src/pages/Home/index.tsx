@@ -10,24 +10,18 @@ import { Title } from "./styles";
 
 export default function Home() {
     const [isRecording, setRecording] = useState(false);
+    const [loadRecordings, setLoadRecordings] = useState(false);
 
     async function record() {
 
         if (isRecording) {
             await RecordScreen.stopRecording()
-                .then(res => {
-                    if (res) {
-                        const url = res.result.outputURL;
-                        console.log("url: " + url);
-                    }
-                })
-                .catch((error) =>
-                    console.warn("error: " + error)
-                );
+                .then(() => setLoadRecordings(!loadRecordings))
+                .catch(error => console.warn("error: ".concat(error)));
         } else {
             await RecordScreen.startRecording({ mic: false })
-                .then(res => console.log("RessSTART:" + res))
-                .catch((error) => console.error(error));
+                .then(() => console.log("Recording....."))
+                .catch(error => console.error(error));
         }
 
         setRecording(!isRecording);
@@ -42,7 +36,7 @@ export default function Home() {
             <Button handleFuncion={record}>
                 {isRecording ? "GRAVANDO" : "INICIAR GRAVAÇÃO"}
             </Button>
-            <RecordingsList />
+            <RecordingsList loadRecordings={loadRecordings} />
         </Layout>
     );
 }

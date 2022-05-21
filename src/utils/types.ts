@@ -17,3 +17,7 @@ export interface AnimationProps {
 export interface RecordingProps {
     file: ReadDirItem;
 }
+
+export interface RecordingsProps {
+    loadRecordings: boolean
+}

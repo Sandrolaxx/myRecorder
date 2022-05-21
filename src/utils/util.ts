@@ -9,3 +9,16 @@ export function getMegaBytes(bytes: number): string {
 export function getLocalDateTime(date: Date): string {
     return date.toLocaleDateString().concat(' ').concat(date.toLocaleTimeString());
 }
+
+export function getBlob(pathFile: string): Promise<Blob> {
+    return new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+    
+        xhr.responseType = "blob";
+        xhr.open("GET", "file://" + pathFile, true);
+        xhr.send(null);
+    
+        xhr.onload = () => resolve(xhr.response);
+        xhr.onerror = () => reject(null);
+    });
+}
