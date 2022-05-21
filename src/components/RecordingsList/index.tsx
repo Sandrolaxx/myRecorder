@@ -5,7 +5,7 @@ import { isNullOrEmpty } from "../../utils/util";
 import Recording from "../Recording";
 import { Container, NoFilesText } from "./styles";
 
-export default function RecordingsList({ loadRecordings }: RecordingsProps) {
+export default function RecordingsList({ loadRecordings, changeAction }: RecordingsProps) {
     const path = "/storage/emulated/0/Android/data/com.myrecorder/files/ReactNativeRecordScreen/";
     const [files, setFiles] = useState<ReadDirItem[]>([]);
 
@@ -22,7 +22,10 @@ export default function RecordingsList({ loadRecordings }: RecordingsProps) {
         <Container>
             {isNullOrEmpty(files) ?
                 files.map(f => (
-                    <Recording file={f} key={f.mtime?.getTime()} />
+                    <Recording
+                        file={f}
+                        key={f.mtime?.getTime()}
+                        changeAction={changeAction} />
                 ))
                 :
                 <NoFilesText>

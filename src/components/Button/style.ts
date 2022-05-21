@@ -2,7 +2,7 @@ import styled from "styled-components/native";
 
 export const Container = styled.Pressable`
     width: 70%;
-    height: 6%;
+    height: 46px;
     align-items: center;
     justify-content: center;
     background-color: #FF6200;

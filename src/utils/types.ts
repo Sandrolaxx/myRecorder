@@ -16,8 +16,23 @@ export interface AnimationProps {
 
 export interface RecordingProps {
     file: ReadDirItem;
+    changeAction: Function;
 }
 
 export interface RecordingsProps {
-    loadRecordings: boolean
+    loadRecordings: boolean;
+    changeAction: Function;
+}
+
+export interface ModalProps {
+    setAction: Function;
+    closeModal: Function;
+}
+
+export enum EnumAction {
+    NONE,
+    RECORD,
+    UPLOAD,
+    REMOVE,
+    OPEN
 }

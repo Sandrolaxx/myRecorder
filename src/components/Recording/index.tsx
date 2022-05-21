@@ -1,14 +1,17 @@
 import storage from "@react-native-firebase/storage";
-import React from "react";
+import React, { useState } from "react";
+import RNFS from 'react-native-fs';
 import PlayIcon from "../../assets/icons/play.svg";
-import { RecordingProps } from "../../utils/types";
+import { EnumAction, RecordingProps } from "../../utils/types";
 import { getBlob, getLocalDateTime, getMegaBytes } from "../../utils/util";
+import Modal from "../Modal";
 import { Container, PlayVideoView, RecText, TextView } from "./styles";
 
-export default function Recording({ file }: RecordingProps) {
+export default function Recording({ file, changeAction }: RecordingProps) {
+    const [showModal, setShowModal] = useState(false);
 
-    async function sendVideoFirebase(pathFile: string) {
-        const blob = await getBlob(pathFile)
+    async function handleUpload() {
+        const blob = await getBlob(file.path)
             .then(res => res)
             .catch(error => error);
 
@@ -26,12 +29,33 @@ export default function Recording({ file }: RecordingProps) {
             .catch(() => console.log("Deu ruim"));
     }
 
+    async function handleAction(action: EnumAction) {
+
+        switch (action) {
+            case EnumAction.REMOVE:
+                handleDelete();
+                break;
+            case EnumAction.UPLOAD:
+                handleUpload();
+                break;
+            default:
+                break;
+        }
+
+        changeAction(action);
+    }
+
+    function handleDelete() {
+        return RNFS.unlink(file.path);
+    }
+
     return (
-        <Container>
+        <Container onPress={setShowModal} >
+            {showModal && <Modal setAction={handleAction} closeModal={() => setShowModal(!showModal)} />}
             <PlayVideoView>
                 <PlayIcon width={40} height={40} fill={"#FAEBD7"} stroke={"#2F5EB2"} />
             </PlayVideoView>
-            <TextView onPress={() => sendVideoFirebase(file.path)} >
+            <TextView>
                 <RecText>Nome: {file.name}</RecText>
                 <RecText>Data gravação: {getLocalDateTime(file.mtime!)}</RecText>
                 <RecText>Tamanho: {getMegaBytes(file.size)}MB</RecText>

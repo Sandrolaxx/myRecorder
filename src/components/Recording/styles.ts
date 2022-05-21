@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.View`
+export const Container = styled.Pressable`
     padding: 14px;
     margin: 12px 12px 0px 12px;
     border: 1px;
@@ -19,7 +19,7 @@ export const PlayVideoView = styled.View`
     justify-content: center;
 `
 
-export const TextView = styled.Pressable`
+export const TextView = styled.View`
 `
 
 export const RecText = styled.Text`
