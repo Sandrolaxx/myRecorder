@@ -29,7 +29,7 @@ export default function Recording({ file, changeAction }: RecordingProps) {
             .catch(() => console.log("Deu ruim"));
     }
 
-    async function handleAction(action: EnumAction) {
+    function handleAction(action: EnumAction) {
 
         switch (action) {
             case EnumAction.REMOVE:
