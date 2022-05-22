@@ -1,6 +1,7 @@
 import storage from "@react-native-firebase/storage";
 import React, { useState } from "react";
 import RNFS from 'react-native-fs';
+// import Video from "react-native-video";
 import PlayIcon from "../../assets/icons/play.svg";
 import { EnumAction, RecordingProps } from "../../utils/types";
 import { getBlob, getLocalDateTime, getMegaBytes } from "../../utils/util";
@@ -9,6 +10,7 @@ import { Container, PlayVideoView, RecText, TextView } from "./styles";
 
 export default function Recording({ file, changeAction }: RecordingProps) {
     const [showModal, setShowModal] = useState(false);
+    const [openVideo, setOpenVideo] = useState(false);
 
     async function handleUpload() {
         const blob = await getBlob(file.path)
@@ -46,12 +48,23 @@ export default function Recording({ file, changeAction }: RecordingProps) {
     }
 
     function handleDelete() {
+        storage().ref().child("/recordings/".concat(file.name)).delete();
+
         return RNFS.unlink(file.path);
     }
 
     return (
         <Container onPress={setShowModal} >
             {showModal && <Modal setAction={handleAction} closeModal={() => setShowModal(!showModal)} />}
+            {/* {!openVideo &&
+                <Video
+                    source={{ uri: 'https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4?_=1' }}
+                    style={{ width: 300, height: 300 }}
+                    controls={true}
+                    ref={(ref:any) => {
+                        this.player = ref
+                    }} />
+            } */}
             <PlayVideoView>
                 <PlayIcon width={40} height={40} fill={"#FAEBD7"} stroke={"#2F5EB2"} />
             </PlayVideoView>
