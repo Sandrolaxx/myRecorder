@@ -1,7 +1,7 @@
 import storage from "@react-native-firebase/storage";
 import React, { useState } from "react";
 import RNFS from 'react-native-fs';
-// import Video from "react-native-video";
+import Video from "react-native-video";
 import PlayIcon from "../../assets/icons/play.svg";
 import { EnumAction, RecordingProps } from "../../utils/types";
 import { getBlob, getLocalDateTime, getMegaBytes } from "../../utils/util";
@@ -55,24 +55,23 @@ export default function Recording({ file, changeAction }: RecordingProps) {
 
     return (
         <Container onPress={setShowModal} >
-            {showModal && <Modal setAction={handleAction} closeModal={() => setShowModal(!showModal)} />}
-            {/* {!openVideo &&
+            {/* {showModal && <Modal setAction={handleAction} closeModal={() => setShowModal(!showModal)} />} */}
+            {!openVideo &&
                 <Video
                     source={{ uri: 'https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4?_=1' }}
-                    style={{ width: 300, height: 300 }}
-                    controls={true}
-                    ref={(ref:any) => {
+                    fullscreen={true}
+                    ref={ref => {
                         this.player = ref
                     }} />
-            } */}
-            <PlayVideoView>
+            }
+            {/* <PlayVideoView>
                 <PlayIcon width={40} height={40} fill={"#FAEBD7"} stroke={"#2F5EB2"} />
             </PlayVideoView>
             <TextView>
                 <RecText>Nome: {file.name}</RecText>
                 <RecText>Data gravação: {getLocalDateTime(file.mtime!)}</RecText>
                 <RecText>Tamanho: {getMegaBytes(file.size)}MB</RecText>
-            </TextView>
+            </TextView> */}
         </Container>
     );
 }
