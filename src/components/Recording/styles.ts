@@ -1,3 +1,4 @@
+import Video from "react-native-video";
 import styled from "styled-components";
 
 export const Container = styled.Pressable`
@@ -17,6 +18,12 @@ export const PlayVideoView = styled.View`
     background-color: #FFBB85;
     align-items: center;
     justify-content: center;
+`
+
+export const VideoPlayer = styled(Video)`
+    width: 280px;
+    height: 280px;
+    padding: 5px;
 `
 
 export const TextView = styled.View`

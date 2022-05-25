@@ -1,12 +1,11 @@
 import storage from "@react-native-firebase/storage";
 import React, { useState } from "react";
 import RNFS from 'react-native-fs';
-import Video from "react-native-video";
 import PlayIcon from "../../assets/icons/play.svg";
 import { EnumAction, RecordingProps } from "../../utils/types";
 import { getBlob, getLocalDateTime, getMegaBytes } from "../../utils/util";
 import Modal from "../Modal";
-import { Container, PlayVideoView, RecText, TextView } from "./styles";
+import { Container, PlayVideoView, RecText, TextView, VideoPlayer } from "./styles";
 
 export default function Recording({ file, changeAction }: RecordingProps) {
     const [showModal, setShowModal] = useState(false);
@@ -54,24 +53,28 @@ export default function Recording({ file, changeAction }: RecordingProps) {
     }
 
     return (
-        <Container onPress={setShowModal} >
-            {/* {showModal && <Modal setAction={handleAction} closeModal={() => setShowModal(!showModal)} />} */}
-            {!openVideo &&
-                <Video
-                    source={{ uri: 'https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4?_=1' }}
-                    fullscreen={true}
+        <Container onPress={setOpenVideo} >
+            {showModal && <Modal setAction={handleAction} closeModal={() => setShowModal(!showModal)} />}
+            {openVideo ?
+                <VideoPlayer
+                    source={{ uri: file.path }}
+                    controls={true}
+                    paused={false}
                     ref={ref => {
                         this.player = ref
                     }} />
+                :
+                <>
+                    <PlayVideoView>
+                        <PlayIcon width={40} height={40} fill={"#FAEBD7"} stroke={"#2F5EB2"} />
+                    </PlayVideoView>
+                    <TextView>
+                        <RecText>Nome: {file.name}</RecText>
+                        <RecText>Data gravação: {getLocalDateTime(file.mtime!)}</RecText>
+                        <RecText>Tamanho: {getMegaBytes(file.size)}MB</RecText>
+                    </TextView>
+                </>
             }
-            {/* <PlayVideoView>
-                <PlayIcon width={40} height={40} fill={"#FAEBD7"} stroke={"#2F5EB2"} />
-            </PlayVideoView>
-            <TextView>
-                <RecText>Nome: {file.name}</RecText>
-                <RecText>Data gravação: {getLocalDateTime(file.mtime!)}</RecText>
-                <RecText>Tamanho: {getMegaBytes(file.size)}MB</RecText>
-            </TextView> */}
         </Container>
     );
 }

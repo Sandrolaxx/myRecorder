@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import RecordScreen from 'react-native-record-screen';
 import homeAnimation from "../../assets/lottie/recordHome.json";
 import recordingAnimation from "../../assets/lottie/recording.json";
-import uploadVideo from "../../assets/lottie/upload.json";
 import toTrash from "../../assets/lottie/trash.json";
+import uploadVideo from "../../assets/lottie/upload.json";
 import Animation from "../../components/Animation";
 import Button from "../../components/Button";
 import Layout from "../../components/Layout";
@@ -39,7 +39,7 @@ export default function Home() {
 
         setAction(selectedAction);
 
-        setTimeout(handleRefresh ,4000);
+        setTimeout(handleRefresh, 4000);
     }
 
     function handleRefresh() {
@@ -49,10 +49,10 @@ export default function Home() {
 
     return (
         <Layout>
-            {action == EnumAction.NONE && <Animation animation={homeAnimation} />}  
-            {action == EnumAction.RECORD && <Animation animation={recordingAnimation} />}  
-            {action == EnumAction.UPLOAD && <Animation animation={uploadVideo} />}  
-            {action == EnumAction.REMOVE && <Animation animation={toTrash} />}  
+            {action == EnumAction.NONE && <Animation animation={homeAnimation} />}
+            {action == EnumAction.RECORD && <Animation animation={recordingAnimation} />}
+            {action == EnumAction.UPLOAD && <Animation animation={uploadVideo} />}
+            {action == EnumAction.REMOVE && <Animation animation={toTrash} />}
             <Title>
                 Grave a tela do seu celular de forma simples e rápida!
             </Title>

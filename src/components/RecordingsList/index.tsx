@@ -11,6 +11,7 @@ export default function RecordingsList({ loadRecordings, changeAction }: Recordi
 
     async function getFiles() {
         const reader = await RNFS.readDir(path);
+        
         setFiles(reader);
     };
 
