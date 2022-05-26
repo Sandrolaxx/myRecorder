@@ -24,7 +24,6 @@ export default function Home() {
                 .catch(error => console.warn("error: ".concat(error)));
         } else {
             await RecordScreen.startRecording({ mic: false })
-                .then(() => console.log("Recording....."))
                 .catch(error => console.error(error));
         }
 
@@ -33,10 +32,6 @@ export default function Home() {
     }
 
     function handleAction(selectedAction: EnumAction) {
-        if (selectedAction == EnumAction.OPEN) {
-            return setAction(EnumAction.NONE);
-        }
-
         setAction(selectedAction);
 
         setTimeout(handleRefresh, 4000);

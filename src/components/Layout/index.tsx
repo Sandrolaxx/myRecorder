@@ -1,5 +1,5 @@
 import React from "react";
-import { ScrollView, StatusBar, useColorScheme } from "react-native";
+import { StatusBar, useColorScheme } from "react-native";
 import { LayoutProps } from "../../utils/types";
 import { Container, Content } from "./style";
 

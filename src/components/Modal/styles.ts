@@ -1,11 +1,13 @@
 import styled from "styled-components";
 
 export const ModalContainer = styled.Modal`
+    width: 100%;
+    height: 100%;
 `
 
 export const ModalView = styled.View`
     width: 70%;
-    height: 35%;
+    height: 30%;
     align-items: center;
     border: 2px;
     border-radius: 26px;
@@ -17,7 +19,13 @@ export const ModalView = styled.View`
 `
 
 export const ModalText = styled.Text`
-    margin: 2px 0px 8px 0px; 
+    margin: 2px 0px 16px 0px; 
+    font-size: 18px;
+    border-color: #2F5EB2;
+`
+
+export const AnimationText = styled.Text`
+    margin-top: -18px; 
     font-size: 18px;
     border-color: #2F5EB2;
 `

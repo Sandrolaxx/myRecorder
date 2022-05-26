@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { EnumAction, ModalProps } from "../../utils/types";
-import Button from "../Button";
-import Animation from "../Animation";
-import { ButtonIcon, ModalContainer, ModalText, ModalView } from "./styles";
 import CloseIcon from "../../assets/icons/close.svg";
 import loading from "../../assets/lottie/loading.json";
+import { EnumAction, ModalProps } from "../../utils/types";
+import Animation from "../Animation";
+import Button from "../Button";
+import { AnimationText, ButtonIcon, ModalContainer, ModalText, ModalView } from "./styles";
 
 export default function Modal({ setAction, closeModal }: ModalProps) {
     const [isLoading, setLoading] = useState(false);
@@ -28,9 +28,9 @@ export default function Modal({ setAction, closeModal }: ModalProps) {
         >
             {isLoading ?
                 <ModalView>
-                    <Animation animation={loading} />
-                    {selectedAction == EnumAction.UPLOAD && <ModalText>Enviando...</ModalText>}
-                    {selectedAction == EnumAction.REMOVE && <ModalText>Excluindo...</ModalText>}
+                    <Animation speed={0.8} animation={loading} />
+                    {selectedAction == EnumAction.UPLOAD && <AnimationText>Enviando...</AnimationText>}
+                    {selectedAction == EnumAction.REMOVE && <AnimationText>Excluindo...</AnimationText>}
                 </ModalView>
                 :
                 <ModalView>
@@ -40,9 +40,6 @@ export default function Modal({ setAction, closeModal }: ModalProps) {
                     <ModalText>Selecione uma opção:</ModalText>
                     <Button handleFuncion={() => handleChangeAction(EnumAction.UPLOAD)} >
                         Upload Nuvem
-                    </Button>
-                    <Button handleFuncion={() => handleChangeAction(EnumAction.OPEN)} >
-                        Abrir
                     </Button>
                     <Button handleFuncion={() => handleChangeAction(EnumAction.REMOVE)} >
                         Excluir

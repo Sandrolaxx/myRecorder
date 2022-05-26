@@ -12,6 +12,7 @@ export interface LayoutProps {
 
 export interface AnimationProps {
     animation: AnimationObject;
+    speed?: number
 }
 
 export interface RecordingProps {
@@ -33,6 +34,5 @@ export enum EnumAction {
     NONE,
     RECORD,
     UPLOAD,
-    REMOVE,
-    OPEN
+    REMOVE
 }
