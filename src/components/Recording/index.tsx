@@ -23,8 +23,8 @@ export default function Recording({ file, changeAction }: RecordingProps) {
         uploadToFirebase(blob);
     }
 
-    function uploadToFirebase(blob: Blob) {
-        storage().ref().child("/recordings/".concat(file.name)).put(blob);
+    async function uploadToFirebase(blob: Blob) {
+        await storage().ref().child("/recordings/".concat(file.name)).put(blob);
     }
 
     function handleAction(action: EnumAction) {

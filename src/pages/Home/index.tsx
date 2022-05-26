@@ -17,18 +17,22 @@ export default function Home() {
     const [action, setAction] = useState(EnumAction.NONE);
 
     async function record() {
-
         if (isRecording) {
             await RecordScreen.stopRecording()
-                .then(() => setLoadRecordings(!loadRecordings))
+                .then(() => {
+                    setLoadRecordings(!loadRecordings)
+                    setAction(action == EnumAction.NONE ? EnumAction.RECORD : EnumAction.NONE);
+                    setRecording(!isRecording);
+                })
                 .catch(error => console.warn("error: ".concat(error)));
         } else {
             await RecordScreen.startRecording({ mic: false })
-                .catch(error => console.error(error));
+                .then(() => {
+                    setAction(action == EnumAction.NONE ? EnumAction.RECORD : EnumAction.NONE);
+                    setRecording(!isRecording);
+                })
+                .catch(error => console.log(error));
         }
-
-        setAction(action == EnumAction.NONE ? EnumAction.RECORD : EnumAction.NONE);
-        setRecording(!isRecording);
     }
 
     function handleAction(selectedAction: EnumAction) {
