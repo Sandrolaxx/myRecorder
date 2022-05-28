@@ -14,14 +14,15 @@ export default function Recording({ file, changeAction }: RecordingProps) {
     function handleAction(action: EnumAction) {
         switch (action) {
             case EnumAction.REMOVE:
-                handleDelete();
                 changeAction(action);
+                handleDelete();
                 break;
             case EnumAction.UPLOAD:
                 changeAction(action);
                 handleUpload();
                 break;
-            case EnumAction.SHARE:
+                case EnumAction.SHARE:
+                changeAction(action);
                 handleShare();
                 break; 
         }
@@ -48,7 +49,7 @@ export default function Recording({ file, changeAction }: RecordingProps) {
         storage().ref().child("/recordings/".concat(file.name)).delete()
             .catch(error => console.log(error));
 
-        return RNFS.unlink(file.path);
+        RNFS.unlink(file.path);
     }
 
     function handleShare() {

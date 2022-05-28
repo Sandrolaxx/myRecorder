@@ -5,6 +5,7 @@ import homeAnimation from "../../assets/lottie/recordHome.json";
 import recordingAnimation from "../../assets/lottie/recording.json";
 import toTrash from "../../assets/lottie/trash.json";
 import uploadVideo from "../../assets/lottie/upload.json";
+import shareVideo from "../../assets/lottie/share.json";
 import notifee from '@notifee/react-native';
 import Animation from "../../components/Animation";
 import Button from "../../components/Button";
@@ -55,15 +56,11 @@ export default function Home() {
         const date = new Date(Date.now());
         date.setTime(date.getTime() + 10000)
 
-        console.log(date.getTime());
-
-        // Create a time-based trigger
         const trigger: TimestampTrigger = {
             type: TriggerType.TIMESTAMP,
             timestamp: date.getTime(),
         };
 
-        // Create a trigger notification
         await notifee.createTriggerNotification(
             {
                 title: 'My Recorder',
@@ -78,8 +75,7 @@ export default function Home() {
 
     function handleAction(selectedAction: EnumAction) {
         setAction(selectedAction);
-
-        setTimeout(handleRefresh, 10000);
+        setTimeout(handleRefresh, 4000);
     }
 
     function handleRefresh() {
@@ -93,6 +89,7 @@ export default function Home() {
             {action == EnumAction.RECORD && <Animation animation={recordingAnimation} />}
             {action == EnumAction.UPLOAD && <Animation animation={uploadVideo} />}
             {action == EnumAction.REMOVE && <Animation animation={toTrash} />}
+            {action == EnumAction.SHARE && <Animation animation={shareVideo} />}
             <Title>
                 Grave a tela do seu celular de forma simples e rápida!
             </Title>
