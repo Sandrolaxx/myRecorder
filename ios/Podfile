@@ -21,6 +21,10 @@ target 'myRecorder' do
 
   pod 'RNFS', :path => '../node_modules/react-native-fs'
 
+  pod 'RNShare', :path => '../node_modules/react-native-share'
+
+  pod 'react-native-notifications', :path => '../node_modules/react-native-notifications'
+
   target 'myRecorderTests' do
     inherit! :complete
     # Pods for testing

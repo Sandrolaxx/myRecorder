@@ -1,6 +1,7 @@
 import storage from "@react-native-firebase/storage";
 import React, { useState } from "react";
-import RNFS from 'react-native-fs';
+import RNFS from "react-native-fs";
+import Share from "react-native-share"
 import PlayIcon from "../../assets/icons/play.svg";
 import { EnumAction, RecordingProps } from "../../utils/types";
 import { getBlob, getLocalDateTime, getMegaBytes } from "../../utils/util";
@@ -9,6 +10,22 @@ import { Container, PlayVideoView, RecText, TextView } from "./styles";
 
 export default function Recording({ file, changeAction }: RecordingProps) {
     const [showModal, setShowModal] = useState(false);
+
+    function handleAction(action: EnumAction) {
+        switch (action) {
+            case EnumAction.REMOVE:
+                handleDelete();
+                changeAction(action);
+                break;
+            case EnumAction.UPLOAD:
+                changeAction(action);
+                handleUpload();
+                break;
+            case EnumAction.SHARE:
+                handleShare();
+                break; 
+        }
+    }
 
     async function handleUpload() {
         const blob = await getBlob(file.path)
@@ -27,25 +44,21 @@ export default function Recording({ file, changeAction }: RecordingProps) {
         await storage().ref().child("/recordings/".concat(file.name)).put(blob);
     }
 
-    function handleAction(action: EnumAction) {
-
-        switch (action) {
-            case EnumAction.REMOVE:
-                handleDelete();
-                break;
-            case EnumAction.UPLOAD:
-                handleUpload();
-                break;
-        }
-
-        changeAction(action);
-    }
-
     function handleDelete() {
         storage().ref().child("/recordings/".concat(file.name)).delete()
             .catch(error => console.log(error));
 
         return RNFS.unlink(file.path);
+    }
+
+    function handleShare() {
+        Share.open({
+            title: "Compartilhe sua gravação",
+            filename: file.name,
+            url: "file://".concat(file.path)
+        })
+        .then(() => changeAction(EnumAction.NONE))
+        .catch(() => changeAction(EnumAction.NONE));
     }
 
     return (

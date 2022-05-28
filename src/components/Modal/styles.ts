@@ -7,7 +7,7 @@ export const ModalContainer = styled.Modal`
 
 export const ModalView = styled.View`
     width: 70%;
-    height: 30%;
+    height: 38%;
     align-items: center;
     border: 2px;
     border-radius: 26px;

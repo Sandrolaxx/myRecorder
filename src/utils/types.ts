@@ -34,5 +34,6 @@ export enum EnumAction {
     NONE,
     RECORD,
     UPLOAD,
-    REMOVE
+    REMOVE,
+    SHARE
 }

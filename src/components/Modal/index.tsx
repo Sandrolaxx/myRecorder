@@ -13,19 +13,23 @@ export default function Modal({ setAction, closeModal }: ModalProps) {
     function handleChangeAction(action: EnumAction) {
         setSelectedAction(action);
         setAction(action);
-        setLoading(true);
-
-        setTimeout(() => {
-            setLoading(false);
+        
+        if (action != EnumAction.SHARE) {
+            setLoading(true);
+            
+            setTimeout(() => {
+                setLoading(false);
+                closeModal();
+            }, 4000);
+        } else {
             closeModal();
-        }, 4000);
+        }
     }
 
     return (
         <ModalContainer
             animationType="slide"
-            transparent={true}
-        >
+            transparent={true}>
             {isLoading ?
                 <ModalView>
                     <Animation speed={0.8} animation={loading} />
@@ -40,6 +44,9 @@ export default function Modal({ setAction, closeModal }: ModalProps) {
                     <ModalText>Selecione uma opção:</ModalText>
                     <Button handleFuncion={() => handleChangeAction(EnumAction.UPLOAD)} >
                         Upload Nuvem
+                    </Button>
+                    <Button handleFuncion={() => handleChangeAction(EnumAction.SHARE)} >
+                        Compartilhar
                     </Button>
                     <Button handleFuncion={() => handleChangeAction(EnumAction.REMOVE)} >
                         Excluir
