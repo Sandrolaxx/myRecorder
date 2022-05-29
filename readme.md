@@ -84,6 +84,4 @@ ___
 
 ## 🔝 Melhorias
 
-Refatorar [setTimeOut](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout) para [useCallback](https://reactjs.org/docs/hooks-reference.html#usecallback).
-
-Caso queira me ajudar com o projeto ficarei muito feliz em aceitar seu pull request 😀.
+Caso queira me ajudar com o projeto e propor melhorias ficarei muito feliz em aceitar seu pull request 😀.
