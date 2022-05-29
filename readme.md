@@ -1,6 +1,6 @@
 ## 😎 Sobre o projeto
 
-Trata-se de uma aplicação que realiza a gravação da tela do dispositivo e possibilita o envio do arquivo para a nuvem(Firebase), tal aplicação foi requisitada na matéria de Desenvolvimento para Dispositivos Móveis no curso de Engenharia de Software do [Centro Universitário FAG](https://www.fag.edu.br/). Foi desenvolvido utilizando Typescript(superset de JS) e o framework React Native. Na solução é possível realizar a gravação da tela, listagem das gravações, envio da gravação para nuvem(Firebase) e remoção do arquivo do dispositivo e da nuvem caso tenha sido realizado upload.
+Trata-se de uma aplicação que realiza a gravação da tela do dispositivo e possibilita o envio do arquivo para a nuvem(Firebase), tal aplicação foi requisitada na matéria de Desenvolvimento para Dispositivos Móveis no curso de Engenharia de Software do [Centro Universitário FAG](https://www.fag.edu.br/). Foi desenvolvido utilizando Typescript(superset de JS) e o framework React Native. Na solução é possível realizar a gravação da tela, listagem das gravações, envio da gravação para nuvem(Firebase), remoção do arquivo do dispositivo e da nuvem caso tenha sido realizado upload e também a possibilidade de compartilhar a gravação criada. A fim de evitar a criação de grandes arquivos o tempo máximo de gravação é 1 minuto, após isso a gravação é encerrada e o usuário é informado com uma notificação push. 
 
 ---
 
@@ -10,7 +10,9 @@ Trata-se de uma aplicação que realiza a gravação da tela do dispositivo e po
 * ⚛️ Framework - [React Native](https://reactnative.dev/)
 * ✨ Estilização - [Styled Components](https://styled-components.com/)
 * 💾 Storage - [Firebase](https://rnfirebase.io/)
+* 🔔 Notificações - [Notifee](https://notifee.app/)
 * 🤯 Animações - [Lottie Files](https://lottiefiles.com/)
+* 🔄 Compartilhamento - [React Native Share](https://react-native-share.github.io/react-native-share/)
 * 📹 Recording - [React Native Record Screen](https://github.com/yutasuzuki/react-native-record-screen)
 * 🗃 Manipulação Arquivos - [React Native FS](https://github.com/itinance/react-native-fs/)
 
@@ -18,17 +20,23 @@ Trata-se de uma aplicação que realiza a gravação da tela do dispositivo e po
 
 ## 🖼🖌Telas do projeto
 
+###  *Icon e Splash Screen*
+![splashScreen](https://user-images.githubusercontent.com/61207420/170888964-3f38cdee-0323-496a-9ff7-d9f04837ed9a.gif)
+
 ###  *Realizando Gravação da Tela*
-![recording](https://user-images.githubusercontent.com/61207420/170528581-18fccf89-a9e2-40ed-a8ce-01e85f9ce98f.gif)
+![recording](https://user-images.githubusercontent.com/61207420/170888977-6d1a6b7d-7f79-457b-b20d-708e4c7f570c.gif)
 
 ###  *Enviando para o Firebase*
-![sendFirebase](https://user-images.githubusercontent.com/61207420/170528691-8965de90-6bd7-4cd6-ae2e-d8ad721b6d31.gif)
+![sendFirebase](https://user-images.githubusercontent.com/61207420/170889007-a9d032e8-1a9c-4ba9-991b-781d21e9ee3c.gif)
+
+###  *Compartilhando Gravação*
+![share](https://user-images.githubusercontent.com/61207420/170889018-9c3dbb2f-b1d4-41dc-b269-fd606ae81b05.gif)
 
 ###  *Removendo Gravação*
-![removeAll](https://user-images.githubusercontent.com/61207420/170528153-c56bf1c8-32f5-434f-bd7b-7d63066daccb.gif)
+![remove](https://user-images.githubusercontent.com/61207420/170889034-640e3c69-8cb2-498d-8985-1b1a0552d3d7.gif)
 
 ###  *Scroll de diversas Gravações*
-![scroll](https://user-images.githubusercontent.com/61207420/170528841-179ec8c3-e1e0-437f-ae6f-a93333f3d6e8.gif)
+![scroll](https://user-images.githubusercontent.com/61207420/170889045-df6f9f55-72ba-4d4d-b588-ee2c05846867.gif)
 
 ---
 
