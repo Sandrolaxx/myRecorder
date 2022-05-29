@@ -1,7 +1,7 @@
 import storage from "@react-native-firebase/storage";
 import React, { useState } from "react";
 import RNFS from "react-native-fs";
-import Share from "react-native-share"
+import Share from "react-native-share";
 import PlayIcon from "../../assets/icons/play.svg";
 import { EnumAction, RecordingProps } from "../../utils/types";
 import { getBlob, getLocalDateTime, getMegaBytes } from "../../utils/util";
@@ -21,10 +21,10 @@ export default function Recording({ file, changeAction }: RecordingProps) {
                 changeAction(action);
                 handleUpload();
                 break;
-                case EnumAction.SHARE:
+            case EnumAction.SHARE:
                 changeAction(action);
                 handleShare();
-                break; 
+                break;
         }
     }
 

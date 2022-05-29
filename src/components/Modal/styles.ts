@@ -19,7 +19,8 @@ export const ModalView = styled.View`
 `
 
 export const ModalText = styled.Text`
-    margin: 2px 0px 16px 0px; 
+    text-align: center;
+    margin: 6px 8px; 
     font-size: 18px;
     border-color: #2F5EB2;
 `

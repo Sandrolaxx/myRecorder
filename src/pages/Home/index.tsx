@@ -1,99 +1,62 @@
-import { TimestampTrigger, TriggerType } from "@notifee/react-native";
 import React, { useState } from "react";
-import RecordScreen from 'react-native-record-screen';
-import homeAnimation from "../../assets/lottie/recordHome.json";
-import recordingAnimation from "../../assets/lottie/recording.json";
-import toTrash from "../../assets/lottie/trash.json";
-import uploadVideo from "../../assets/lottie/upload.json";
-import shareVideo from "../../assets/lottie/share.json";
-import notifee from '@notifee/react-native';
 import Animation from "../../components/Animation";
 import Button from "../../components/Button";
 import Layout from "../../components/Layout";
+import Modal from '../../components/Modal';
 import RecordingsList from "../../components/RecordingsList";
 import { EnumAction } from "../../utils/types";
+import { Animations, getRecordingMessage, handleNotification, startRecord, stopRecord } from "../../utils/util";
 import { Title } from "./styles";
 
 export default function Home() {
     const [isRecording, setRecording] = useState(false);
     const [loadRecordings, setLoadRecordings] = useState(false);
+    const [showModal, setShowModal] = useState(false);
     const [action, setAction] = useState(EnumAction.NONE);
 
     async function record() {
-        if (isRecording) {
-            await RecordScreen.stopRecording()
-                .then(() => {
-                    setLoadRecordings(!loadRecordings)
-                    setAction(action == EnumAction.NONE ? EnumAction.RECORD : EnumAction.NONE);
-                    setRecording(!isRecording);
-                })
-                .catch(error => console.warn("error: ".concat(error)));
-        } else {
-            await RecordScreen.startRecording({ mic: false })
-                .then(() => {
-                    setAction(action == EnumAction.NONE ? EnumAction.RECORD : EnumAction.NONE);
-                    setRecording(!isRecording);
-                })
-                .catch(error => console.log(error));
-        }
-
-        handleNotification();
-
-        setTimeout(async () => {
-            await RecordScreen.stopRecording()
-                .then(() => {
-                    setLoadRecordings(false)
-                    setAction(EnumAction.NONE);
-                    setRecording(!isRecording);
-                    setRecording(false);
-
-                })
-                .catch(error => console.warn("error: ".concat(error)))
-        }, 5000);
+        isRecording ? stopRecord(handleStopRecording) : startRecord(handleStartRecording);
     }
 
-    async function handleNotification() {
-        const date = new Date(Date.now());
-        date.setTime(date.getTime() + 10000)
+    function handleRecord() {
+        isRecording ? record() : setShowModal(true);
+    }
 
-        const trigger: TimestampTrigger = {
-            type: TriggerType.TIMESTAMP,
-            timestamp: date.getTime(),
-        };
+    function handleStopRecording() {
+        setLoadRecordings(!loadRecordings)
+        setAction(EnumAction.NONE);
+        setRecording(false);
+    }
+    function handleStartRecording() {
+        setAction(EnumAction.RECORD);
+        setRecording(!isRecording);
 
-        await notifee.createTriggerNotification(
-            {
-                title: 'My Recorder',
-                body: 'Sua Gravação foi encerrada',
-                android: {
-                    channelId: 'default',
-                },
-            },
-            trigger,
-        );
+        handleNotification(setLoadRecordings);
+        
+        setTimeout(async () => stopRecord(handleStopRecording), 5000);
     }
 
     function handleAction(selectedAction: EnumAction) {
         setAction(selectedAction);
-        setTimeout(handleRefresh, 4000);
-    }
-
-    function handleRefresh() {
-        setAction(EnumAction.NONE);
-        setLoadRecordings(!loadRecordings);
+        setTimeout(() => {
+            setAction(EnumAction.NONE);
+            setLoadRecordings(!loadRecordings);
+        }, 4000);
     }
 
     return (
         <Layout>
-            {action == EnumAction.NONE && <Animation animation={homeAnimation} />}
-            {action == EnumAction.RECORD && <Animation animation={recordingAnimation} />}
-            {action == EnumAction.UPLOAD && <Animation animation={uploadVideo} />}
-            {action == EnumAction.REMOVE && <Animation animation={toTrash} />}
-            {action == EnumAction.SHARE && <Animation animation={shareVideo} />}
+            {action == EnumAction.NONE && <Animation animation={Animations.homeAnimation} />}
+            {action == EnumAction.RECORD && <Animation animation={Animations.recordingAnimation} />}
+            {action == EnumAction.UPLOAD && <Animation animation={Animations.uploadVideo} />}
+            {action == EnumAction.REMOVE && <Animation animation={Animations.toTrash} />}
+            {action == EnumAction.SHARE && <Animation animation={Animations.shareVideo} />}
             <Title>
                 Grave a tela do seu celular de forma simples e rápida!
             </Title>
-            <Button handleFuncion={record}>
+            {showModal && <Modal setAction={record} closeModal={() => setShowModal(false)}
+                onlyMessage message={getRecordingMessage()} />}
+            <Button handleFuncion={handleRecord}>
                 {isRecording ? "GRAVANDO" : "INICIAR GRAVAÇÃO"}
             </Button>
             <RecordingsList loadRecordings={loadRecordings} changeAction={handleAction} />

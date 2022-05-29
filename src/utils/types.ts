@@ -28,6 +28,8 @@ export interface RecordingsProps {
 export interface ModalProps {
     setAction: Function;
     closeModal: Function;
+    onlyMessage?: boolean;
+    message?: string;
 }
 
 export enum EnumAction {
